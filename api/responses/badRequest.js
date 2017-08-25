@@ -64,13 +64,17 @@ module.exports = function badRequest(data, options) {
   // work, just send JSON.
   if (options.view) {
     return res.view(options.view, { data: viewData, title: 'Bad Request' });
-  }
+  } else return res.view('400', { data: viewData, title: 'Bad Request' }, function (err, html) {
+    if (err) {
+      if (err.code === 'E_VIEW_FAILED') {
+        sails.log.verbose('res.badRequest() :: Could not locate view for error page (sending JSON instead).  Details: ',err);
+      }
+      else {
+        sails.log.warn('res.badRequest() :: When attempting to render error page view, an error occured (sending JSON instead).  Details: ', err);
+      }
+      return res.jsonx(data);
+    }
 
-  // If no second argument provided, try to serve the implied view,
-  // but fall back to sending JSON(P) if no view can be inferred.
-  else return res.guessView({ data: viewData, title: 'Bad Request' }, function couldNotGuessView () {
-    return res.jsonx(data);
+    return res.send(html);
   });
-
 };
-

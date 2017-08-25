@@ -32,9 +32,9 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'homepage'
-  }
+  '/': { view: 'homepage' },
+  '/point/register/:id': 'PointController.register',
+  '/point/updateContent/:id': 'PointController.updateContent',
 
   /***************************************************************************
   *                                                                          *
