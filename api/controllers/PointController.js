@@ -58,5 +58,35 @@ module.exports = {
         }
 
         return res.json('ok');
-    }
+    },
+
+    /**
+     * `PointController.getScreenshot()`
+     */
+    getScreenshot: function (req, res) {
+        let id = parseInt(req.param('id'));
+
+        if (!Number.isInteger(id)) {
+            return res.badRequest('ID must be integer');
+        }
+
+        sails.sockets.broadcast('point_' + id, 'sendScreen', {});
+
+        return res.json('ok');
+    },
+
+    /**
+     * `PointController.broadcastReload()`
+     */
+    broadcastReload: function (req, res) {
+        let id = parseInt(req.param('id'));
+
+        if (!Number.isInteger(id)) {
+            return res.badRequest('ID must be integer');
+        }
+
+        sails.sockets.broadcast('point_' + id, 'broadcastReload', {});
+
+        return res.json('ok');
+    },
 };
