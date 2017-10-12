@@ -1,7 +1,7 @@
 {
-  "name": "interaction2",
+  "name": "interaction",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
@@ -26,8 +26,9 @@
     "sails-disk": "~0.10.9"
   },
   "scripts": {
-    "debug": "node debug app.js",
-    "start": "node app.js"
+    "inspect": "node inspect app.js",
+    "dev": "node app.js",
+    "start": "node app.js --silent --port=1337 --prod"
   },
   "main": "app.js",
   "repository": {
