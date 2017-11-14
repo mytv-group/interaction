@@ -1,8 +1,8 @@
 {
-  "name": "interaction",
+  "name": "RTV interaction",
   "private": true,
   "version": "0.0.1",
-  "description": "a Sails application",
+  "description": "RTV interaction",
   "keywords": [],
   "dependencies": {
     "ejs": "2.3.4",
